@@ -23,7 +23,6 @@ namespace Projet2
         public MoteurPhysique()
         {
             _collisionTableau = new int[20, 20];
-
         }
 
         public void Initialize(Carte _carte1, Carte _carte2, ElementDecor _elementDecor)

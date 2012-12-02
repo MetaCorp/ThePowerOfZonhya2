@@ -36,12 +36,8 @@ namespace Projet2
 
         List<Vector2> _path;
 
-        Vector2[] _pathFinale;
-
         Texture2D _texture;
         public Texture2D Texture { get { return _texture; } set { _texture = value; } }
-
-        int g;
 
         int i = 0;
 
@@ -52,8 +48,6 @@ namespace Projet2
             this._pointMouvement = _pointMouvement;
             this._vieActuelle = _vieActuelle;
             this._vieTotale = _vieTotale;
-
-            g = 1;
 
             _path = new List<Vector2>();
 

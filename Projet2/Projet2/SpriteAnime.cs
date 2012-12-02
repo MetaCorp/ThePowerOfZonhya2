@@ -20,7 +20,9 @@ namespace Projet2
 
         bool _flip;
 
-        public SpriteAnime(Vector2 _positionTile, int _maxIndexX, int _maxIndexY, int _vitesseAnimation)
+        Vector2 _camera;
+
+        public SpriteAnime(Vector2 _positionTile, int _maxIndexX, int _maxIndexY, int _vitesseAnimation, Vector2 _camera)
             : base(_positionTile)
         {
             this.Position = _positionTile;
@@ -32,11 +34,13 @@ namespace Projet2
 
             this._vitesseAnimation = _vitesseAnimation;
 
+            this._camera = _camera;
+
             _currentIndexX = 1;
             _currentIndexY = 0;
         }
 
-        public void Update(Vector2 _position, int _orientation, bool _isMouving, GameTime _gameTime)
+        public void Update(Vector2 _position, int _orientation, bool _isMouving, Vector2 _camera, GameTime _gameTime)
         {
             if (_gameTime.TotalGameTime.Milliseconds % _vitesseAnimation == 0)
             {
@@ -46,6 +50,7 @@ namespace Projet2
             }
 
             this.Position = _position;
+            this._camera = _camera;
 
             if (_orientation == 0)
                 _currentIndexY = 2;//flip
@@ -77,8 +82,8 @@ namespace Projet2
             //Console.WriteLine("Update Position : " + Position);
 
             if (!_flip)
-                _spriteBatch.Draw(Texture, new Rectangle((int)(32 * (Position.X - Position.Y)) + 16, (int)(16 * (Position.X + Position.Y)) + 16, 32, 32), new Rectangle(_currentIndexX * 32, _currentIndexY * 32, 32, 32), Color);
-            else _spriteBatch.Draw(Texture, new Rectangle((int)(32 * (Position.X - Position.Y)) + 16, (int)(16 * (Position.X + Position.Y)) + 16, 32, 32), new Rectangle(_currentIndexX * 32, _currentIndexY * 32, 32, 32), Color, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 1);
+                _spriteBatch.Draw(Texture, new Rectangle((int)(_camera.X + 32 * (Position.X - Position.Y)) + 16, (int)(_camera.Y + 16 * (Position.X + Position.Y)) + 16, 32, 32), new Rectangle(_currentIndexX * 32, _currentIndexY * 32, 32, 32), Color, 0, Vector2.Zero, SpriteEffects.None, 0);
+            else _spriteBatch.Draw(Texture, new Rectangle((int)(_camera.X + 32 * (Position.X - Position.Y)) + 16, (int)(_camera.Y + 16 * (Position.X + Position.Y)) + 16, 32, 32), new Rectangle(_currentIndexX * 32, _currentIndexY * 32, 32, 32), Color, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
         }
 
     }

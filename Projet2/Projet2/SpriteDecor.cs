@@ -20,9 +20,12 @@ namespace Projet2
         int _xIndex, _yIndex;
         int _width, _height;
 
-        public SpriteDecor(ElementDecor _elementDecor)
+        Vector2 _camera;
+
+        public SpriteDecor(ElementDecor _elementDecor, Vector2 _camera)
         {
             this._elementDecor = _elementDecor;
+            this._camera = _camera;
         }
 
         public void LoadContent(ContentManager content, String _asset)
@@ -30,9 +33,9 @@ namespace Projet2
            _texture = content.Load<Texture2D>(_asset);
         }
 
-        public void Update(GameTime _gameTime)
+        public void Update(Vector2 _camera)
         {
-
+            this._camera = _camera;
         }
 
         public void Draw(SpriteBatch _spriteBatch)
@@ -148,7 +151,7 @@ namespace Projet2
 
                 }
 
-                _spriteBatch.Draw(_texture, new Rectangle(32 * (_elementDecor.DecorTableau[1,y] -_elementDecor.DecorTableau[2,y]), 16 * (_elementDecor.DecorTableau[1,y] +_elementDecor.DecorTableau[2,y]), _width, _height), new Rectangle(64 * _xIndex, 64 * _yIndex, _width, _height), Color.White);
+                _spriteBatch.Draw(_texture, new Rectangle(32 * (_elementDecor.DecorTableau[1, y] - _elementDecor.DecorTableau[2, y]), 16 * (_elementDecor.DecorTableau[1, y] + _elementDecor.DecorTableau[2, y]), _width, _height), new Rectangle(64 * _xIndex, 64 * _yIndex, _width, _height), Color.White, 0, Vector2.Zero, SpriteEffects.None, 1);//(float)(Math.Exp( -(16 * (_elementDecor.DecorTableau[1,y] +_elementDecor.DecorTableau[2,y]) + _height))));
               
             }
 

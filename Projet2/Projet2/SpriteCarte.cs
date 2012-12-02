@@ -18,11 +18,14 @@ namespace Projet2
         int _type;
 
         Texture2D _textureTileSet, _textureTileHover;
+
+        Vector2 _camera;
        
-        public SpriteCarte(Carte _carte, int _type)
+        public SpriteCarte(Carte _carte, int _type, Vector2 _camera)
         {
             this._carte = _carte;
             this._type = _type;
+            this._camera = _camera;
         }
 
         public void LoadContent(ContentManager content, String _asset1, String _asset2)
@@ -32,9 +35,11 @@ namespace Projet2
 
         }
 
-        public void Update(GameTime _gameTime)
+        public void Update(Vector2 _camera)
         {
-
+            //Console.WriteLine("carte Update Camera : " + _camera);
+            this._camera = _camera;
+            //Console.WriteLine("moteurGraphique carte camera = " + _camera);
         }
 
         public void Draw(SpriteBatch _spriteBatch)
@@ -263,11 +268,11 @@ namespace Projet2
                         }
 
 
-                                _spriteBatch.Draw(_textureTileSet, new Rectangle( _carte.TileStepX * (x - y), _carte.TileStepY * (x + y), _carte.TileWidth, _carte.TileHeight), new Rectangle(_carte.XTile * 64, _carte.YTile * 64, 64, 64), Color.White);
+                    _spriteBatch.Draw(_textureTileSet, new Rectangle((int)_camera.X + _carte.TileStepX * (x - y),(int)_camera.Y + _carte.TileStepY * (x + y), _carte.TileWidth, _carte.TileHeight), new Rectangle(_carte.XTile * 64, _carte.YTile * 64, 64, 64), Color.White, 0, Vector2.Zero, SpriteEffects.None, (float)Math.Exp(- _carte.TileStepY * (x + y) / 200 ));//(float)Math.Exp(-(_carte.TileStepY * (x + y) + _carte.TileHeight)));
                         
                 }
                 if (_type == 1)
-                    _spriteBatch.Draw(_textureTileHover, new Rectangle(_carte.TileStepX * ((int)_carte.TileHover.X - (int)_carte.TileHover.Y), 32 + _carte.TileStepY * ((int)_carte.TileHover.X + (int)_carte.TileHover.Y), 64, 32), Color.White);
+                    _spriteBatch.Draw(_textureTileHover, new Rectangle((int)_camera.X + _carte.TileStepX * ((int)_carte.TileHover.X - (int)_carte.TileHover.Y),(int)_camera.Y + 32 + _carte.TileStepY * ((int)_carte.TileHover.X + (int)_carte.TileHover.Y), 64, 32), Color.White);
             }
 
         }

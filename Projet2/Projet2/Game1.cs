@@ -25,10 +25,9 @@ namespace Projet2
         MoteurSysteme _moteurSysteme;
         MoteurPhysique _moteurPhysique;
 
+
         // ============= Proivisoire ==============
 
-        Texture2D _mouseMap;
-        Color[] _colorMouseMap;
 
         public Game1()
         {
@@ -48,12 +47,11 @@ namespace Projet2
         {
             // TODO: Add your initialization logic here
 
-            _colorMouseMap = new Color[64 * 32];
 
             //_moteurPhysique.Initialize();
-            _moteurJeu.Initialize(_moteurSysteme, _moteurPhysique, _colorMouseMap);
+            _moteurJeu.Initialize(_moteurSysteme, _moteurPhysique);
             _moteurPhysique.Initialize(_moteurJeu.Carte1, _moteurJeu.Carte2, _moteurJeu.ElementDecor);
-            _moteurGraphique.Initialize(_moteurJeu);
+            _moteurGraphique.Initialize(_moteurJeu, _moteurJeu.Camera);
 
             base.Initialize();
         }
@@ -78,7 +76,7 @@ namespace Projet2
             // TODO: Add your update logic here
             _moteurSysteme.Update(gameTime);
             _moteurJeu.Update(gameTime);
-            _moteurGraphique.Update(gameTime);
+            _moteurGraphique.Update(_moteurJeu.Camera, gameTime);
 
             base.Update(gameTime);
         }
@@ -88,7 +86,7 @@ namespace Projet2
             GraphicsDevice.Clear(Color.LightGray);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
+            spriteBatch.Begin();//SpriteSortMode.BackToFront,null);
 
             _moteurGraphique.Draw(spriteBatch);
 

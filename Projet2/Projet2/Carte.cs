@@ -43,15 +43,14 @@ namespace Projet2
         int _yTile;
         public int YTile { get { return _yTile; } set { _yTile = value; } }
 
-        Color[] _colorMouseMap;
-        Vector2 _mouseMapPos;
+        Vector2 _camera;
 
-        public Carte(Char[,] _tileArray, Color[] _colorMouseMap, int _tileTotalWidth, int _tileTotalHeight, int _tileWidth, int _tileHeight, int _tileStepX, int _tileStepY)
+        public Carte(Char[,] _tileArray, int _tileTotalWidth, int _tileTotalHeight, Vector2 _camera, int _tileWidth, int _tileHeight, int _tileStepX, int _tileStepY)
         {
             this._tileTotalWidth = _tileTotalWidth;
             this._tileTotalHeight = _tileTotalHeight;
 
-            this._colorMouseMap = _colorMouseMap;
+            this._camera = _camera;
 
             this._tileArray = _tileArray;
 
@@ -61,9 +60,10 @@ namespace Projet2
             this._tileStepY = _tileStepY;
         }
 
-        public void Update(Vector2 _positionSouris, GameTime _gameTime)
+        public void Update(Vector2 _positionSouris, Vector2 _camera, GameTime _gameTime)
         {
             _tileHover = setTileHover(_positionSouris);
+            this._camera = _camera;
         }
 
         public Vector2 setTileHover(Vector2 _positionSouris)
@@ -72,8 +72,8 @@ namespace Projet2
 
             Vector2 _tileHoverAux;
 
-            _tileHoverAux.X = ((_positionSouris.Y / 32 + (_positionSouris.X - 32) / 64) / 2) * 2;
-            _tileHoverAux.Y = ((_positionSouris.Y / 32 - (_positionSouris.X - 32) / 64) / 2) * 2;
+            _tileHoverAux.X = (((_positionSouris.Y - _camera.Y) / 32 + (_positionSouris.X - 32 - _camera.X) / 64) / 2) * 2;
+            _tileHoverAux.Y = (((_positionSouris.Y - _camera.Y) / 32 - (_positionSouris.X - 32 - _camera.X) / 64) / 2) * 2;
 
             /*_mouseMapPos.X = _positionSouris.X % 64;
             if (_tileHover.X % 4 == 0)
@@ -96,7 +96,7 @@ namespace Projet2
 
             _tileHover = _tileHoverAux - Vector2.One ;
 
-            //Console.WriteLine("Case : x = " + (int)_tileHover.X + ", y = " + (int)_tileHover.Y);
+            Console.WriteLine("Case : x = " + (int)_tileHover.X + ", y = " + (int)_tileHover.Y);
             
 
             return _tileHover;
