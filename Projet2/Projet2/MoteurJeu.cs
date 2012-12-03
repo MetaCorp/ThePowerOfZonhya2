@@ -67,9 +67,9 @@ namespace Projet2
 
         public void UpdateCamera(Vector2 _positionTile)
         {
-            //Vector2 _position = new Vector2(-250 + 32 * (_positionTile.X - _positionTile.Y) + 16, 16 * (_positionTile.X + _positionTile.Y) + 16);
-            Vector2 _position = new Vector2(_positionTile.X - 25, _positionTile.Y);
-            _camera = -(_position - Vector2.One) * 10;
+            Vector2 _position = new Vector2(-250 + 32 * (_positionTile.X - _positionTile.Y) + 16, -100 + 16 * (_positionTile.X + _positionTile.Y) + 16);
+            //Vector2 _position = new Vector2(_positionTile.X - 25, _positionTile.Y);
+            _camera = -_position;// - Vector2.One) *10;
             //Console.WriteLine("moteurjeu camera = " + _camera);
         }
 

@@ -51,10 +51,11 @@ namespace Projet2
 
             _path = new List<Vector2>();
 
-            _positionTile = new Vector2(1, 1);
+            _positionTile = new Vector2(10, 10);
 
-            _position = new Vector2(16, 64 + 16 + 2);
-
+            //_position = new Vector2(16, 64 + 16 + 2);
+            _position = new Vector2( 32 * (_positionTile.X - _positionTile.Y) + 16, 16 * (_positionTile.X + _positionTile.Y) + 16 + 2);
+            
             _nextPosition = _position;
 
             _vitesseTile = new Vector2(0.05f, 0.05f);

@@ -143,7 +143,7 @@ namespace Projet2
             {
                 for (int x = 0; x < 20; x++)
                 {// reste a ajouter les numéros
-                    if ((_carte1.TileArray[x, y] > 64 && _carte1.TileArray[x, y] < 91))// || (_carte2.TileArray[x, y] > 64 && _carte2.TileArray[x, y] < 91))
+                    if ((_carte1.TileArray[x, y] > 64 && _carte1.TileArray[x, y] < 91) || (_carte2.TileArray[x, y] > 64 && _carte2.TileArray[x, y] < 91))
                     {
                         _collisionTableau[x, y] = 1;
                         Console.WriteLine("Collision en " + x + ", " + y);
