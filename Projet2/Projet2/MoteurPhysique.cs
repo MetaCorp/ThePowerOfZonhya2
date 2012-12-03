@@ -139,9 +139,9 @@ namespace Projet2
 
             Console.WriteLine("setcollision");
 
-            for (int y = 0; y < 20; y++)
+            for (int y = 0; y < 40; y++)
             {
-                for (int x = 0; x < 20; x++)
+                for (int x = 0; x < 40; x++)
                 {// reste a ajouter les numéros
                     if ((_carte1.TileArray[x, y] > 64 && _carte1.TileArray[x, y] < 91) || (_carte2.TileArray[x, y] > 64 && _carte2.TileArray[x, y] < 91))
                     {

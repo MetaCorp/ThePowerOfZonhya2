@@ -96,7 +96,7 @@ namespace Projet2
 
             _tileHover = _tileHoverAux - Vector2.One ;
 
-            Console.WriteLine("Case : x = " + (int)_tileHover.X + ", y = " + (int)_tileHover.Y);
+            //Console.WriteLine("Case : x = " + (int)_tileHover.X + ", y = " + (int)_tileHover.Y);
             
 
             return _tileHover;

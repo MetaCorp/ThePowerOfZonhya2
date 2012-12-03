@@ -28,6 +28,7 @@ namespace Projet2
         {
             _keyboardState = Keyboard.GetState();
             _mouseState = Mouse.GetState();
+
         }
 
     }
