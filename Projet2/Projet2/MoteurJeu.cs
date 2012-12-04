@@ -83,7 +83,7 @@ namespace Projet2
         public void UpdateCamera(Vector2 _positionTile)
         {
             Vector2 _position = new Vector2(_camera.X + 32 * (_positionTile.X - _positionTile.Y) + 32, _camera.Y + 16 * (_positionTile.X + _positionTile.Y) + 48);
-            int _vitesse = 400;
+            int _vitesse = 300;
             //_camera = -_position;// - Vector2.One) *10;
 
             if (_position.X < 300)

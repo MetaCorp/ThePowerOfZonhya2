@@ -16,13 +16,14 @@ namespace Projet2
         int[,] _decorTableau;
         public int[,] DecorTableau { get { return _decorTableau; } set { _decorTableau = value; } }
 
-        // provisoire
-        int _nbDecor = 5;
+        int _nbDecor;
         public int NbDecor { get { return _nbDecor; } set { _nbDecor = value; } }
 
         public ElementDecor(int[,] _decorTableau)
         {
             this._decorTableau = _decorTableau;
+
+            _nbDecor = _decorTableau.Length / 3;// car 3 nb pour chaque decor, type x y
         }
 
 
