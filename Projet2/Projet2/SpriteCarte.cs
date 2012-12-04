@@ -42,7 +42,7 @@ namespace Projet2
             //Console.WriteLine("moteurGraphique carte camera = " + _camera);
         }
 
-        public void Draw(SpriteBatch _spriteBatch)
+        public void Draw(SpriteBatch _spriteBatch, Color _color)
         {
             for (int y = 0; y < _carte.TileTotalHeight; y++)
             {
@@ -268,11 +268,11 @@ namespace Projet2
                         }
 
 
-                    _spriteBatch.Draw(_textureTileSet, new Rectangle((int)_camera.X + _carte.TileStepX * (x - y),(int)_camera.Y + _carte.TileStepY * (x + y), _carte.TileWidth, _carte.TileHeight), new Rectangle(_carte.XTile * 64, _carte.YTile * 64, 64, 64), Color.White, 0, Vector2.Zero, SpriteEffects.None, (float)Math.Exp(- _carte.TileStepY * (x + y) / 200 ));//(float)Math.Exp(-(_carte.TileStepY * (x + y) + _carte.TileHeight)));
+                    _spriteBatch.Draw(_textureTileSet, new Rectangle((int)_camera.X + _carte.TileStepX * (x - y),(int)_camera.Y + _carte.TileStepY * (x + y), _carte.TileWidth, _carte.TileHeight), new Rectangle(_carte.XTile * 64, _carte.YTile * 64, 64, 64), _color, 0, Vector2.Zero, SpriteEffects.None, (float)Math.Exp(- _carte.TileStepY * (x + y) / 200 ));//(float)Math.Exp(-(_carte.TileStepY * (x + y) + _carte.TileHeight)));
                         
                 }
                 if (_type == 1)
-                    _spriteBatch.Draw(_textureTileHover, new Rectangle((int)_camera.X + _carte.TileStepX * ((int)_carte.TileHover.X - (int)_carte.TileHover.Y),(int)_camera.Y + 32 + _carte.TileStepY * ((int)_carte.TileHover.X + (int)_carte.TileHover.Y), 64, 32), Color.White);
+                    _spriteBatch.Draw(_textureTileHover, new Rectangle((int)_camera.X + _carte.TileStepX * ((int)_carte.TileHover.X - (int)_carte.TileHover.Y),(int)_camera.Y + 32 + _carte.TileStepY * ((int)_carte.TileHover.X + (int)_carte.TileHover.Y), 64, 32), _color);
             }
 
         }

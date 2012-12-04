@@ -38,7 +38,7 @@ namespace Projet2
             this._camera = _camera;
         }
 
-        public void Draw(SpriteBatch _spriteBatch)
+        public void Draw(SpriteBatch _spriteBatch, Color _color)
         {
             for (int y = 0; y < _elementDecor.NbDecor; y++)
             {
@@ -151,7 +151,7 @@ namespace Projet2
 
                 }
 
-                _spriteBatch.Draw(_texture, new Rectangle((int)_camera.X + 32 * (_elementDecor.DecorTableau[1, y] - _elementDecor.DecorTableau[2, y]), (int)_camera.Y + 16 * (_elementDecor.DecorTableau[1, y] + _elementDecor.DecorTableau[2, y]), _width, _height), new Rectangle(64 * _xIndex, 64 * _yIndex, _width, _height), Color.White, 0, Vector2.Zero, SpriteEffects.None, 1);//(float)(Math.Exp( -(16 * (_elementDecor.DecorTableau[1,y] +_elementDecor.DecorTableau[2,y]) + _height))));
+                _spriteBatch.Draw(_texture, new Rectangle((int)_camera.X + 32 * (_elementDecor.DecorTableau[1, y] - _elementDecor.DecorTableau[2, y]), (int)_camera.Y + 16 * (_elementDecor.DecorTableau[1, y] + _elementDecor.DecorTableau[2, y]), _width, _height), new Rectangle(64 * _xIndex, 64 * _yIndex, _width, _height), _color, 0, Vector2.Zero, SpriteEffects.None, 1);//(float)(Math.Exp( -(16 * (_elementDecor.DecorTableau[1,y] +_elementDecor.DecorTableau[2,y]) + _height))));
               
             }
 

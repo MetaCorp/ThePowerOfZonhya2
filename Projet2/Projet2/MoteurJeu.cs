@@ -16,14 +16,15 @@ namespace Projet2
         MoteurSysteme _moteurSysteme;
         MoteurPhysique _moteurPhysique;
 
-        enum StatusJeu
+        public enum StatusJeu
         {
             PageAccueil,
             EnCours,
-            enPause
-        }
+            EnPause
+        } 
 
-        StatusJeu _statusJeu;
+        StatusJeu _statusDuJeu;
+        public StatusJeu StatusDuJeu { get { return _statusDuJeu; } set { _statusDuJeu = value; } }
 
         Carte _carte1;
         public Carte Carte1 { get { return _carte1; } set { _carte1 = value; } }
@@ -42,7 +43,7 @@ namespace Projet2
 
         public MoteurJeu()
         {
-            _statusJeu = StatusJeu.PageAccueil;
+            _statusDuJeu = StatusJeu.EnCours;
         }
 
         public void Initialize(MoteurSysteme _moteurSysteme, MoteurPhysique _moteurPhysique)
@@ -60,9 +61,23 @@ namespace Projet2
 
         public void Update(GameTime _gameTime)
         {
-            _carte1.Update(new Vector2(_moteurSysteme.EvenementUtilisateur.MouseState.X, _moteurSysteme.EvenementUtilisateur.MouseState.Y), _camera, _gameTime);
-            _personnage1.update(_moteurSysteme.EvenementUtilisateur.MouseState, _carte1.TileHover, _moteurPhysique, _gameTime);
-            UpdateCamera(_personnage1.PositionTile);
+            if (_moteurSysteme.EvenementUtilisateur.KeyBoardState.IsKeyDown(Keys.Escape))
+            {
+                if(_statusDuJeu == StatusJeu.EnCours)
+                    _statusDuJeu = StatusJeu.EnPause;
+
+                else if (_statusDuJeu == StatusJeu.EnPause)
+                    _statusDuJeu = StatusJeu.EnCours;
+
+                Console.WriteLine(_statusDuJeu);
+            }
+
+            if (_statusDuJeu == StatusJeu.EnCours)
+            {
+                _carte1.Update(new Vector2(_moteurSysteme.EvenementUtilisateur.MouseState.X, _moteurSysteme.EvenementUtilisateur.MouseState.Y), _camera, _gameTime);
+                _personnage1.update(_moteurSysteme.EvenementUtilisateur.MouseState, _carte1.TileHover, _moteurPhysique, _gameTime);
+                UpdateCamera(_personnage1.PositionTile);
+            }
         }
 
         public void UpdateCamera(Vector2 _positionTile)

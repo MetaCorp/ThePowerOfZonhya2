@@ -77,13 +77,13 @@ namespace Projet2
 
         //.flipHorizontaly
 
-        public new void Draw(SpriteBatch _spriteBatch)
+        public new void Draw(SpriteBatch _spriteBatch, Color _color)
         {
             //Console.WriteLine("Update Position : " + Position);
 
             if (!_flip)
-                _spriteBatch.Draw(Texture, new Rectangle((int)(_camera.X + 32 * (Position.X - Position.Y)) + 16, (int)(_camera.Y + 16 * (Position.X + Position.Y)) + 16, 32, 32), new Rectangle(_currentIndexX * 32, _currentIndexY * 32, 32, 32), Color, 0, Vector2.Zero, SpriteEffects.None, 0);
-            else _spriteBatch.Draw(Texture, new Rectangle((int)(_camera.X + 32 * (Position.X - Position.Y)) + 16, (int)(_camera.Y + 16 * (Position.X + Position.Y)) + 16, 32, 32), new Rectangle(_currentIndexX * 32, _currentIndexY * 32, 32, 32), Color, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                _spriteBatch.Draw(Texture, new Rectangle((int)(_camera.X + 32 * (Position.X - Position.Y)) + 16, (int)(_camera.Y + 16 * (Position.X + Position.Y)) + 16, 32, 32), new Rectangle(_currentIndexX * 32, _currentIndexY * 32, 32, 32), _color, 0, Vector2.Zero, SpriteEffects.None, 0);
+            else _spriteBatch.Draw(Texture, new Rectangle((int)(_camera.X + 32 * (Position.X - Position.Y)) + 16, (int)(_camera.Y + 16 * (Position.X + Position.Y)) + 16, 32, 32), new Rectangle(_currentIndexX * 32, _currentIndexY * 32, 32, 32), _color, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
         }
 
     }

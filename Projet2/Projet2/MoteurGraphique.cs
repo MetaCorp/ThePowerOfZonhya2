@@ -30,11 +30,12 @@ namespace Projet2
 
         public MoteurGraphique()
         {
-            _interfaceUtilisateur = new InterfaceUtilisateur();
+            
         }
 
         public void Initialize(MoteurJeu _moteurJeu, Vector2 _camera)
         {
+            _interfaceUtilisateur = new InterfaceUtilisateur();
 
             this._camera = _camera;
 
@@ -56,22 +57,40 @@ namespace Projet2
             _spriteCarte2.LoadContent(_content, "TileSetIso", "hilight");
             _personnage1.LoadContent(_content, "brasegali");
             _spriteDecor.LoadContent(_content, "TileSetIso");
+            _interfaceUtilisateur.LoadContent(_content, "rpg_gui_v1");
         }
 
         public void Update(Vector2 _camera, GameTime _gameTime)
         {
-            _personnage1.Update(_moteurJeu.Personnage1.PositionTile, _moteurJeu.Personnage1.Orientation, _moteurJeu.Personnage1.IsMouving, _camera, _gameTime);
-            _spriteCarte1.Update(_camera);
-            _spriteCarte2.Update(_camera);
-            _spriteDecor.Update(_camera);
+            if (_moteurJeu.StatusDuJeu == Projet2.MoteurJeu.StatusJeu.EnCours)
+            {
+                _personnage1.Update(_moteurJeu.Personnage1.PositionTile, _moteurJeu.Personnage1.Orientation, _moteurJeu.Personnage1.IsMouving, _camera, _gameTime);
+                _spriteCarte1.Update(_camera);
+                _spriteCarte2.Update(_camera);
+                _spriteDecor.Update(_camera);
+            }
         }
 
         public void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteCarte1.Draw(_spriteBatch);
-            _spriteCarte2.Draw(_spriteBatch);
-            _personnage1.Draw(_spriteBatch);
-            _spriteDecor.Draw(_spriteBatch);
+            if (_moteurJeu.StatusDuJeu == Projet2.MoteurJeu.StatusJeu.EnCours)
+            {
+                _spriteCarte1.Draw(_spriteBatch, Color.White);
+                _spriteCarte2.Draw(_spriteBatch, Color.White);
+                _personnage1.Draw(_spriteBatch, Color.White);
+                _spriteDecor.Draw(_spriteBatch, Color.White);
+            }
+            else if (_moteurJeu.StatusDuJeu == Projet2.MoteurJeu.StatusJeu.EnPause)
+            {
+                _spriteCarte1.Draw(_spriteBatch, Color.LightGray);
+                _spriteCarte2.Draw(_spriteBatch, Color.LightGray);
+                _personnage1.Draw(_spriteBatch, Color.LightGray);
+                _spriteDecor.Draw(_spriteBatch, Color.LightGray);
+            }
+
+            if (_moteurJeu.StatusDuJeu == Projet2.MoteurJeu.StatusJeu.EnPause)
+                _interfaceUtilisateur.Draw(_spriteBatch);
+
         }
 
 
