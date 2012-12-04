@@ -29,7 +29,7 @@ namespace Projet2
         // ============= Proivisoire ==============
 
 
-        public Game1()
+        public Game1() // <( ?° ?? ?°)> ( ?° ?? ?°)>
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
