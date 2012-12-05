@@ -19,6 +19,10 @@ namespace Projet2
         int _itemHover;
         public int ItemHover { get { return _itemHover; } set { _itemHover = value; } }
 
+        String _sousMenu = "";
+        public String SousMenu { get { return _sousMenu; } set { _sousMenu = value; } }
+        
+
         public InterfaceUtilisateur(string[] _item)
         {
             this._item = _item;
@@ -28,16 +32,32 @@ namespace Projet2
         public void Update(MouseState _mouseState)
         {
             _itemHover = setItemHover(new Vector2(_mouseState.X, _mouseState.Y));
-            
+
+            if (_mouseState.LeftButton == ButtonState.Pressed && _sousMenu != "")
+            {
+                if (_sousMenu == "Reglage")
+                {
+                    if ((_mouseState.Y > 100 && _mouseState.Y < 140) && (_mouseState.X > 460 && _mouseState.Y < 500))
+                        _sousMenu = "";
+                }
+                else if (_sousMenu == "Sauvegarder")
+                    _sousMenu = "";
+                    
+            }
         }
 
         public int UpdateStatus()
         {
             if (_itemHover == 0)
                 return 1;
+            else if (ItemHover == 1 || ItemHover == 2)
+            {
+                _sousMenu = _item[ItemHover];
+                return 2;
+            }
             else if (ItemHover == 3)
                 return 3;
-            else return 1;
+            else return 2;
         }
 
         public int setItemHover(Vector2 _positionSouris)

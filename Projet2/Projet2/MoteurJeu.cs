@@ -88,7 +88,7 @@ namespace Projet2
             {
                 _interfaceUtilisateur.Update(_moteurSysteme.EvenementUtilisateur.MouseState);
 
-                if (_moteurSysteme.EvenementUtilisateur.MouseState.LeftButton == ButtonState.Pressed)
+                if (_moteurSysteme.EvenementUtilisateur.MouseState.LeftButton == ButtonState.Pressed && _interfaceUtilisateur.SousMenu == "")
                 {
                     _statusDuJeu = (StatusJeu) _interfaceUtilisateur.UpdateStatus();
                 }

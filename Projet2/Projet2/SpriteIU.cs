@@ -47,6 +47,12 @@ namespace Projet2
                     _spriteBatch.Draw(_texture, new Rectangle(300, 150 + 50 * i, 200, 40), new Rectangle(0, 30, 75, 15), Color.White);
                 _spriteBatch.DrawString(_font, _interfaceUtilisateur.Item[i], new Vector2(340, 156 + 50 * i), Color.Black);
             }
+
+            if (_interfaceUtilisateur.SousMenu == "Reglage")
+            {
+                _spriteBatch.Draw(_texture, new Rectangle(200, 100, 400, 300), new Rectangle(29, 111, 48 - 29, 129 - 111), Color.White);
+                _spriteBatch.DrawString(_font, _interfaceUtilisateur.SousMenu, new Vector2(240, 120), Color.Black);
+            }
         }
 
     }
