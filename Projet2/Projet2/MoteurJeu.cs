@@ -55,7 +55,7 @@ namespace Projet2
             this._moteurSysteme = _moteurSysteme;
             this._moteurPhysique = _moteurPhysique;
 
-            _interfaceUtilisateur = new InterfaceUtilisateur(new String[4] {"Reprendre", "Reglage", "Sauvegarder", "Quitter"});
+            _interfaceUtilisateur = new InterfaceUtilisateur(new String[4] {"Reprendre", "Reglage", "Sauvegarder", "Quitter"});// chaque string correspond a un bouton
 
             _camera = new Vector2(50, -50);
 
@@ -67,7 +67,7 @@ namespace Projet2
 
         public void Update(GameTime _gameTime)
         {
-            if (_moteurSysteme.EvenementUtilisateur.IsKeyPressed(Keys.Escape))
+            if (_moteurSysteme.EvenementUtilisateur.IsKeyPressed(Keys.Escape)) // si on appuie sur echap on met en pause
             {
                 if(_statusDuJeu == StatusJeu.EnCours)
                     _statusDuJeu = StatusJeu.EnPause;
@@ -101,7 +101,7 @@ namespace Projet2
             int _vitesse = 300;
             //_camera = -_position;// - Vector2.One) *10;
 
-            if (_position.X < 300)
+            if (_position.X < 300) // calcul pour déplacer la camera vite fait compliqué
                 _camera.X += _vitesse / (_position.X + 100);// / (_position.X-213);
             else if (_position.X > 500)
                 _camera.X -= _vitesse / ((-_position.X + 800) + 100);

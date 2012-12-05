@@ -34,6 +34,7 @@ namespace Projet2
             _collisionTableau = SetCollisionTableau(_carte1, _carte2, _elementDecor);
         }
 
+        // algorythme Astar simplifié (beaucoup ?) (je sais pas si il faut essayer de comprendre ca xD)
         public List<Vector2> GetPath(Vector2 _positionDepart, Vector2 _positionFinale) // position sur les tiles isos
         {
             Console.WriteLine("set path :");

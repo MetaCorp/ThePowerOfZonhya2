@@ -20,7 +20,7 @@ namespace Projet2
         int _orientation; // dans le sens trigo en partant de 0 jusqu'a 7
         public int Orientation { get { return _orientation; } set { _orientation = value; } }
 
-        bool _isMouving = false;
+        bool _isMouving = false; // pour savoir si il faut faire l'animation de marche ou pas
         public bool IsMouving { get { return _isMouving; } set { _isMouving = value; } }
 
         Vector2 _position;
@@ -51,12 +51,12 @@ namespace Projet2
 
             _path = new List<Vector2>();
 
-            _positionTile = new Vector2(8, 5);
+            _positionTile = new Vector2(8, 5);// position sur la tile iso
 
-            //_position = new Vector2(16, 64 + 16 + 2);
+            // position absolue
             _position = new Vector2( 32 * (_positionTile.X - _positionTile.Y) + 16, 16 * (_positionTile.X + _positionTile.Y) + 16 + 2);
             
-            _nextPosition = _position;
+            _nextPosition = _position;// si deplacement
 
             _vitesseTile = new Vector2(0.05f, 0.05f);
 
@@ -67,7 +67,7 @@ namespace Projet2
 
         public void update(MouseState _mouseState, Vector2 _tileHover, MoteurPhysique _moteurPhysique, GameTime _gameTime)
         {
-            if (_mouseState.RightButton == ButtonState.Pressed)
+            if (_mouseState.RightButton == ButtonState.Pressed)// si on clique c'est qui faut bouger le personnage
                 SetNextPosPersonnage(_mouseState, _tileHover, _moteurPhysique, _gameTime);
             BougerPersonnage(_path);
         }
@@ -81,8 +81,8 @@ namespace Projet2
 
             if (_path.Count == 0)// si il n'y a pas de déplacement
             {
-                _path = _moteurPhysique.GetPath(_positionTile, _finalPositionTile);
-                _path.RemoveAt(0);
+                _path = _moteurPhysique.GetPath(_positionTile, _finalPositionTile);// retourne toutes les positions en tile par les quelles le personnage va devoir passer
+                _path.RemoveAt(0); // on enleve la premiere position car c'est celle de départ
             }
 
 
@@ -98,7 +98,7 @@ namespace Projet2
 
             if (_path.Count > 0)
             {
-                _nextPositionTile = _path[0];
+                _nextPositionTile = _path[0]; // se deplacer a la prochaine position
 
                 // pour l'animation
 
@@ -135,7 +135,7 @@ namespace Projet2
                 {
                     _positionTile = _path[0];
                     //Console.WriteLine("_path remove !");
-                    _path.RemoveAt(0);
+                    _path.RemoveAt(0);// lorsque la position est atteinte on enleve la position et on recommence
                     i = 0;
                 }
 
@@ -166,71 +166,6 @@ namespace Projet2
 
         }
 
-        public void BougerPersonnage2(MouseState _mouseState, GameTime _gameTime)
-        {
-            _isMouving = false;
-
-            if (_mouseState.RightButton == ButtonState.Pressed)
-            {
-                _nextPosition.X = _mouseState.X - 16;
-                _nextPosition.Y = _mouseState.Y - 32;
-            }
-
-            if (_nextPosition != _position)
-            {
-                _isMouving = true;
-
-                if (Math.Abs(_nextPosition.X - _position.X) > 2)
-                {
-                    if (_nextPosition.X > _position.X + 1)
-                        _direction.X = 2;
-                    else if (_nextPosition.X < _position.X - 1)
-                        _direction.X = -2;
-                }
-                else
-                {
-                    _position.X = _nextPosition.X;
-                    _direction.X = 0;
-                }
-
-                if (Math.Abs(_nextPosition.Y - _position.Y) > 1)
-                {
-                    if (_nextPosition.Y > _position.Y)
-                        _direction.Y = 1;
-                    else if (_nextPosition.Y < _position.Y)
-                        _direction.Y = -1;
-
-                    if ((_nextPosition.Y > _position.Y) && (_nextPosition.X == _position.X))
-                        _direction.Y = 2;
-                    else if ((_nextPosition.Y < _position.Y) && (_nextPosition.X == _position.X))
-                        _direction.Y = -2;
-                }
-                else
-                {
-                    _position.Y = _nextPosition.Y;
-                    _direction.Y = 0;
-                }
-
-                //_position.X += _direction.X * _vitesseX * (float)_gameTime.ElapsedGameTime.TotalMilliseconds;
-                //_position.Y += _direction.Y * _vitesseY * (float)_gameTime.ElapsedGameTime.TotalMilliseconds;
-            }
-
-            if (_direction.Equals(new Vector2(2, 0)))
-                _orientation = 0;
-            else if (_direction.Equals(new Vector2(2, -1)))
-                _orientation = 1;
-            else if ((_direction.Equals(new Vector2(0, -1))) || (_direction.Equals(new Vector2(0, -2))))
-                _orientation = 2;
-            else if (_direction.Equals(new Vector2(-2, -1)))
-                _orientation = 3;
-            else if (_direction.Equals(new Vector2(-2, 0)))
-                _orientation = 4;
-            else if (_direction.Equals(new Vector2(-2, 1)))
-                _orientation = 5;
-            else if ((_direction.Equals(new Vector2(0, 1))) || (_direction.Equals(new Vector2(0, 2))))
-                _orientation = 6;
-            else if (_direction.Equals(new Vector2(2, 1)))
-                _orientation = 7;
-        }
+        
     }
 }

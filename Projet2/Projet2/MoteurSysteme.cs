@@ -75,8 +75,8 @@ namespace Projet2
             return _carteTableau;
         }
 
-        public int[,] lireDecor(String asset) // 5(2,4)
-        {
+        public int[,] lireDecor(String asset) //chaque ligne etant de type : 5(2,4)
+        {//                                         avec 5 le type, 2 le x et 4 le y
             _fileDecor = new System.IO.StreamReader(asset);
 
             int _nbDecor = Convert.ToInt32(_fileDecor.ReadLine());

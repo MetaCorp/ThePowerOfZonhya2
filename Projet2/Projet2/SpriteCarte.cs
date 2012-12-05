@@ -42,7 +42,7 @@ namespace Projet2
             //Console.WriteLine("moteurGraphique carte camera = " + _camera);
         }
 
-        public void Draw(SpriteBatch _spriteBatch, Color _color)
+        public void Draw(SpriteBatch _spriteBatch, Color _color)// on va parcourir le tableau et en fonction du caractere ajouter une texture a la map
         {
             for (int y = 0; y < _carte.TileTotalHeight; y++)
             {

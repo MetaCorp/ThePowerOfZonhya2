@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 namespace Projet2
-{// 1 - e ^ - x
+{
     class MoteurGraphique
     {
         MoteurJeu _moteurJeu;
@@ -39,10 +39,10 @@ namespace Projet2
 
             this._camera = _camera;
 
-            _spriteCarte1 = new SpriteCarte(_moteurJeu.Carte1, 1, _camera);
-            _spriteCarte2 = new SpriteCarte(_moteurJeu.Carte2, 2, _camera);
+            _spriteCarte1 = new SpriteCarte(_moteurJeu.Carte1, 1, _camera);// carte de fond
+            _spriteCarte2 = new SpriteCarte(_moteurJeu.Carte2, 2, _camera);// 2nde carte pour l'eau etc
 
-            _spriteDecor = new SpriteDecor(_moteurJeu.ElementDecor, _camera);
+            _spriteDecor = new SpriteDecor(_moteurJeu.ElementDecor, _camera);// arbres, buissons, etc
             this._moteurJeu = _moteurJeu;
 
 

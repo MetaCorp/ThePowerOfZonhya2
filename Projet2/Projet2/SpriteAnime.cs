@@ -29,10 +29,10 @@ namespace Projet2
 
             Color = Color.White;
 
-            this._maxIndexX = _maxIndexX;
-            this._maxIndexY = _maxIndexY;
+            this._maxIndexX = _maxIndexX; // le nombre d'image en largeur
+            this._maxIndexY = _maxIndexY; // et en longueur
 
-            this._vitesseAnimation = _vitesseAnimation;
+            this._vitesseAnimation = _vitesseAnimation; // frequence du changement des animations
 
             this._camera = _camera;
 
@@ -42,7 +42,7 @@ namespace Projet2
 
         public void Update(Vector2 _position, int _orientation, bool _isMouving, Vector2 _camera, GameTime _gameTime)
         {
-            if (_gameTime.TotalGameTime.Milliseconds % _vitesseAnimation == 0)
+            if (_gameTime.TotalGameTime.Milliseconds % _vitesseAnimation == 0)  // gere l'animation de marche
             {
                 if (_isMouving)
                     _currentIndexX = (_currentIndexX + 1) % (_maxIndexX + 1);
@@ -52,7 +52,7 @@ namespace Projet2
             this.Position = _position;
             this._camera = _camera;
 
-            if (_orientation == 0)
+            if (_orientation == 0) // choisit la texture en fonction de l'orientation du personnage
                 _currentIndexY = 2;//flip
             else if (_orientation == 1)
                 _currentIndexY = 4;//flip

@@ -38,7 +38,7 @@ namespace Projet2
             this._camera = _camera;
         }
 
-        public void Draw(SpriteBatch _spriteBatch, Color _color)
+        public void Draw(SpriteBatch _spriteBatch, Color _color)// le caractere en position x = 0 correspond au type de texture
         {
             for (int y = 0; y < _elementDecor.NbDecor; y++)
             {
