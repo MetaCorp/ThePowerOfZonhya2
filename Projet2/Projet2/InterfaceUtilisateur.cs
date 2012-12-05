@@ -13,20 +13,52 @@ namespace Projet2
 {
     class InterfaceUtilisateur
     {
-        Texture2D _texture;
+        string[] _item;
+        public String[] Item { get { return _item; } set { _item = value; } }
 
-        public InterfaceUtilisateur()
+        int _itemHover;
+        public int ItemHover { get { return _itemHover; } set { _itemHover = value; } }
+
+        public InterfaceUtilisateur(string[] _item)
         {
+            this._item = _item;
+            _itemHover = -1;
         }
 
-        public void LoadContent(ContentManager content, String _asset)
+        public void Update(MouseState _mouseState)
         {
-           _texture = content.Load<Texture2D>(_asset);
+            _itemHover = setItemHover(new Vector2(_mouseState.X, _mouseState.Y));
+            
         }
 
-        public void Draw(SpriteBatch _spriteBatch)
+        public int UpdateStatus()
         {
-            _spriteBatch.Draw(_texture, new Rectangle(300, 220, 200, 40), new Rectangle(0, 30, 75, 15), Color.White);
+            if (_itemHover == 0)
+                return 1;
+            else if (ItemHover == 3)
+                return 3;
+            else return 1;
         }
+
+        public int setItemHover(Vector2 _positionSouris)
+        {
+            int _nb = -1;
+
+            if (_positionSouris.X > 300 && _positionSouris.X < 500)
+            {
+                if (_positionSouris.Y > 150 && _positionSouris.Y < 190)
+                    _nb = 0;
+                else if (_positionSouris.Y > 200 && _positionSouris.Y < 240)
+                    _nb = 1;
+                else if (_positionSouris.Y > 250 && _positionSouris.Y < 290)
+                    _nb = 2;
+                else if (_positionSouris.Y > 300 && _positionSouris.Y < 340)
+                    _nb = 3;
+            }
+
+
+            return _nb;
+        }
+
     }
 }

@@ -22,7 +22,7 @@ namespace Projet2
 
         SpriteDecor _spriteDecor;
 
-        InterfaceUtilisateur _interfaceUtilisateur;
+        SpriteIU _spriteIU;
 
         SpriteAnime _personnage1;
 
@@ -35,7 +35,7 @@ namespace Projet2
 
         public void Initialize(MoteurJeu _moteurJeu, Vector2 _camera)
         {
-            _interfaceUtilisateur = new InterfaceUtilisateur();
+            _spriteIU = new SpriteIU(_moteurJeu.InterfaceUtilisateur);
 
             this._camera = _camera;
 
@@ -57,7 +57,7 @@ namespace Projet2
             _spriteCarte2.LoadContent(_content, "TileSetIso", "hilight");
             _personnage1.LoadContent(_content, "brasegali");
             _spriteDecor.LoadContent(_content, "TileSetIso");
-            _interfaceUtilisateur.LoadContent(_content, "rpg_gui_v1");
+            _spriteIU.LoadContent(_content, "rpg_gui_v1", "SpriteFont1");
         }
 
         public void Update(Vector2 _camera, GameTime _gameTime)
@@ -68,6 +68,10 @@ namespace Projet2
                 _spriteCarte1.Update(_camera);
                 _spriteCarte2.Update(_camera);
                 _spriteDecor.Update(_camera);
+            }
+            else if (_moteurJeu.StatusDuJeu == Projet2.MoteurJeu.StatusJeu.EnPause)
+            {
+                _spriteIU.Update(_moteurJeu.InterfaceUtilisateur.ItemHover);
             }
         }
 
@@ -82,14 +86,14 @@ namespace Projet2
             }
             else if (_moteurJeu.StatusDuJeu == Projet2.MoteurJeu.StatusJeu.EnPause)
             {
-                _spriteCarte1.Draw(_spriteBatch, Color.LightGray);
-                _spriteCarte2.Draw(_spriteBatch, Color.LightGray);
-                _personnage1.Draw(_spriteBatch, Color.LightGray);
-                _spriteDecor.Draw(_spriteBatch, Color.LightGray);
+                _spriteCarte1.Draw(_spriteBatch, Color.Gray);
+                _spriteCarte2.Draw(_spriteBatch, Color.Gray);
+                _personnage1.Draw(_spriteBatch, Color.Gray);
+                _spriteDecor.Draw(_spriteBatch, Color.Gray);
+
+                _spriteIU.Draw(_spriteBatch);
             }
 
-            if (_moteurJeu.StatusDuJeu == Projet2.MoteurJeu.StatusJeu.EnPause)
-                _interfaceUtilisateur.Draw(_spriteBatch);
 
         }
 

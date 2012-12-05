@@ -16,11 +16,15 @@ namespace Projet2
         MoteurSysteme _moteurSysteme;
         MoteurPhysique _moteurPhysique;
 
+        InterfaceUtilisateur _interfaceUtilisateur;
+        public InterfaceUtilisateur InterfaceUtilisateur { get { return _interfaceUtilisateur; } set { _interfaceUtilisateur = value; } }
+
         public enum StatusJeu
         {
             PageAccueil,
             EnCours,
-            EnPause
+            EnPause,
+            Quitter
         } 
 
         StatusJeu _statusDuJeu;
@@ -51,6 +55,8 @@ namespace Projet2
             this._moteurSysteme = _moteurSysteme;
             this._moteurPhysique = _moteurPhysique;
 
+            _interfaceUtilisateur = new InterfaceUtilisateur(new String[4] {"Reprendre", "Reglage", "Sauvegarder", "Quitter"});
+
             _camera = new Vector2(50, -50);
 
             _personnage1 = new Personnage("Meta", 100, 90, 6, 3);
@@ -61,7 +67,7 @@ namespace Projet2
 
         public void Update(GameTime _gameTime)
         {
-            if (_moteurSysteme.EvenementUtilisateur.KeyBoardState.IsKeyDown(Keys.Escape))
+            if (_moteurSysteme.EvenementUtilisateur.IsKeyPressed(Keys.Escape))
             {
                 if(_statusDuJeu == StatusJeu.EnCours)
                     _statusDuJeu = StatusJeu.EnPause;
@@ -77,6 +83,15 @@ namespace Projet2
                 _carte1.Update(new Vector2(_moteurSysteme.EvenementUtilisateur.MouseState.X, _moteurSysteme.EvenementUtilisateur.MouseState.Y), _camera, _gameTime);
                 _personnage1.update(_moteurSysteme.EvenementUtilisateur.MouseState, _carte1.TileHover, _moteurPhysique, _gameTime);
                 UpdateCamera(_personnage1.PositionTile);
+            }
+            else if (_statusDuJeu == StatusJeu.EnPause)
+            {
+                _interfaceUtilisateur.Update(_moteurSysteme.EvenementUtilisateur.MouseState);
+
+                if (_moteurSysteme.EvenementUtilisateur.MouseState.LeftButton == ButtonState.Pressed)
+                {
+                    _statusDuJeu = (StatusJeu) _interfaceUtilisateur.UpdateStatus();
+                }
             }
         }
 

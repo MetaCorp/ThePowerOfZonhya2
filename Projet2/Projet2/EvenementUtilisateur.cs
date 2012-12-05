@@ -16,6 +16,9 @@ namespace Projet2
         KeyboardState _keyboardState;
         public KeyboardState KeyBoardState { get { return _keyboardState; } set { _keyboardState = value; } }
 
+        KeyboardState _oldKeyboardState;
+        public KeyboardState OldKeyBoardState { get { return _oldKeyboardState; } set { _oldKeyboardState = value; } }
+
         MouseState _mouseState;
         public MouseState MouseState { get { return _mouseState; } set { _mouseState = value; } }
 
@@ -26,9 +29,16 @@ namespace Projet2
 
         public void Update(GameTime _gameTime)
         {
-            _keyboardState = Keyboard.GetState();
             _mouseState = Mouse.GetState();
 
+            _oldKeyboardState = _keyboardState;
+
+            _keyboardState = Keyboard.GetState();
+        }
+
+        public bool IsKeyPressed(Keys _keys)
+        {
+            return _keyboardState.IsKeyDown(_keys) && _oldKeyboardState.IsKeyUp(_keys);
         }
 
     }

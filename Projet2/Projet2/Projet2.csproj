@@ -126,6 +126,7 @@
     <Compile Include="SpriteAnime.cs" />
     <Compile Include="SpriteCarte.cs" />
     <Compile Include="SpriteDecor.cs" />
+    <Compile Include="SpriteIU.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

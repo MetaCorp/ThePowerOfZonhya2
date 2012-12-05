@@ -73,6 +73,9 @@ namespace Projet2
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            if (_moteurJeu.StatusDuJeu == MoteurJeu.StatusJeu.Quitter)
+                this.Exit();
+
             // TODO: Add your update logic here
             _moteurSysteme.Update(gameTime);
             _moteurJeu.Update(gameTime);
